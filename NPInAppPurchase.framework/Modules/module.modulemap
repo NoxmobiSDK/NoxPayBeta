@@ -1,6 +1,0 @@
-framework module NPInAppPurchase {
-  umbrella header "NPInAppPurchase.h"
-
-  export *
-  module * { export * }
-}

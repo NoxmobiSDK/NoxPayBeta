@@ -2,7 +2,7 @@
 
 # ===============修改podspec的版本号===========================
 
-CoreName="NPCore"
+CoreName="NoxPaySDK"
 PodName="NoxPay-Beta"
 
 echo "\n🔥当前版本号："

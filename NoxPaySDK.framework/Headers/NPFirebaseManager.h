@@ -5,7 +5,7 @@
 //  Created by nox_chong on 2022/7/4.
 //
 
-#import <NPCore/NPCore.h>
+#import <NoxPaySDK/NoxPaySDK.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

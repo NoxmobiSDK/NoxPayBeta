@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NoxPay-Beta"
-  spec.version      = "0.7.6"
+  spec.version      = "1.0.0000"
   spec.summary      = "A aggregate payment SDK-Beta provided Nox."
   spec.homepage     = "https://github.com/NoxmobiSDK/NoxPayBeta"
   spec.license      = "MIT"
@@ -26,34 +26,15 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
   spec.requires_arc = true
 
-  spec.subspec 'Tool' do |ss|
-    ss.source_files = "NPTool.framework/Headers/*.{h}"
-    ss.ios.vendored_frameworks = 'NPTool.framework'
+  spec.subspec 'Pay' do |ss|
+    ss.source_files = "NoxPaySDK.framework/Headers/*.{h}"
+    ss.ios.vendored_frameworks = 'NoxPaySDK.framework'
     ss.dependency 'AFNetworking'
     ss.dependency 'GTMBase64'
-    ss.dependency 'Firebase/Analytics'
-    ss.dependency 'Firebase/RemoteConfig'
-  end
-
-  spec.subspec 'Core' do |ss|
-    ss.source_files = "NPCore.framework/Headers/*.{h}"
-    ss.ios.vendored_frameworks = 'NPCore.framework'
-    ss.dependency 'AFNetworking'
-    ss.dependency 'NoxPay/Tool'
-  end
-
-  spec.subspec 'IAP' do |ss|
-    ss.source_files = "NPInAppPurchase.framework/Headers/*.{h}"
-    ss.ios.vendored_frameworks = 'NPInAppPurchase.framework'
     ss.dependency 'YYCache'
     ss.dependency 'MJExtension'
-    ss.dependency 'NoxPay/Core'
-  end
-
-  spec.subspec 'MaterialControl' do |ss|
-    ss.source_files = "NPMaterialControl.framework/Headers/*.{h}"
-    ss.ios.vendored_frameworks = 'NPMaterialControl.framework'
-	ss.dependency 'NoxPay/Core'
+    ss.dependency 'Firebase/Analytics'
+    ss.dependency 'Firebase/RemoteConfig'
   end
 
 end

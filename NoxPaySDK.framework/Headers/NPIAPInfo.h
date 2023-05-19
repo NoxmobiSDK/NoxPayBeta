@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NPIAPInfo : NSObject
 
-@property (nonatomic, copy) NSString *projectID;// 智勇那边生成的项目id
+//@property (nonatomic, copy) NSString *projectID;// 智勇那边生成的项目id
 @property (nonatomic, copy) NSString *uid;
 
 /// @param projectID 项目ID 中台生成

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-SDKName="NPCore"
+SDKName="NoxPaySDK"
 echo "\n🔥当前版本号："
 # 读取plist中的版本号
 srcVer=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ./$SDKName.framework/Info.plist)

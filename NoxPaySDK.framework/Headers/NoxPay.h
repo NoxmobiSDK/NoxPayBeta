@@ -79,6 +79,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param groupId  展示位的分组id
 + (nullable NSArray *)getPlacementInfos:(NSString *)groupId;
 
+#pragma mark 切记此方法一定要在“购买(purchase)”之前调用
+///检验订阅产品是否在订阅期内
+/// @param placementID 要购买的商品所在的展示位ID
++ (void)checkSubscribeProduct:(NSString *)placementID purchaseSubscribe:(nullable void(^)(BOOL isSucceed, NSError *_Nullable error))purchaseSubscribe;
+
 /// 购买商品
 /// @param placementID 要购买的商品所在的展示位ID
 + (void)purchase:(NSString *)placementID;
@@ -124,6 +129,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 处理丢单
 /// @param token token必须为有效token SDK内部丢单验证逻辑不处理token过期问题
 + (void)handleMissingOrdersWithAccessToken:(NSString *)token __attribute__((deprecated("This method is no longer used.")));
+
++ (void)verifyPruchaseWithID:(NSString *)ProductID :(NSData *)newReceipt;
 
 @end
 

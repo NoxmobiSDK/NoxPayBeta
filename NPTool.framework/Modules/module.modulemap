@@ -1,6 +1,0 @@
-framework module NPTool {
-  umbrella header "NPTool.h"
-
-  export *
-  module * { export * }
-}

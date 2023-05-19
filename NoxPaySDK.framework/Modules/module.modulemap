@@ -1,0 +1,6 @@
+framework module NoxPaySDK {
+  umbrella header "NoxPaySDK.h"
+
+  export *
+  module * { export * }
+}
