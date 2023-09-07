@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// SDK是否已启动
 @property (nonatomic, assign, readonly) BOOL isStarted;
 
+/// 是否去要强制更改用户
+@property (nonatomic, assign, readonly) BOOL isChange;
+
 /// 获取NoxPay单例对象
 + (instancetype)shared;
 
@@ -56,20 +59,22 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NoxPay (IAP)
 
 /// 启动IAP模块
-/// @param iapInfo IAP模块配置
 /// @param initComplete 启动IAP模块结果，isSuccess = 启动是否成功，error = 错误信息
-/// @param purchaseProcess 购买流程全景回调，status : NPInAppPurchase模块NPIAPStatus枚举值；error : 报错信息；extra:当status==20033时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
-+ (void)startIAPWithInfo:(NPIAPInfo *)iapInfo
-            initComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
+/// @param purchaseProcess 购买流程全景回调，status : NPErrorCode枚举值；error : 报错信息；extra:当status==10004时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
++ (void)startIAPInitComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
          purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
 
 /// 启动IAP模块并且同时初始化Firebase
-/// @param iapInfo IAP模块配置
 /// @param initComplete 启动IAP模块结果，isSuccess = 启动是否成功，error = 错误信息
-/// @param purchaseProcess 购买流程全景回调，status : NPInAppPurchase模块NPIAPStatus枚举值；error : 报错信息；extra:当status==20033时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
-+ (void)startIAPAndFIRWithInfo:(NPIAPInfo *)iapInfo
-            initComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
+/// @param purchaseProcess 购买流程全景回调，status : NPErrorCode枚举值；error : 报错信息；extra:当status==10004时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
++ (void)startIAPAndFIRInitComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
          purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
+
+/// 商品展示打点api
++ (void)placementShow:(NSString *)placementID;
+///
+/// 商品发放打点api
++ (void)placementGrantFinish:(NSString *)placementID;
 
 /// 获取商品信息
 /// @param placementId  展示位id
@@ -79,20 +84,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param groupId  展示位的分组id
 + (nullable NSArray *)getPlacementInfos:(NSString *)groupId;
 
-#pragma mark 切记此方法一定要在“购买(purchase)”之前调用
-///检验订阅产品是否在订阅期内
-/// @param placementID 要购买的商品所在的展示位ID
-+ (void)checkSubscribeProduct:(NSString *)placementID purchaseSubscribe:(nullable void(^)(BOOL isSucceed, NSError *_Nullable error))purchaseSubscribe;
-
 /// 购买商品
 /// @param placementID 要购买的商品所在的展示位ID
-+ (void)purchase:(NSString *)placementID;
-
++ (void)purchase:(NSString *)placementID withUid:(NSString *)uid;
 
 /// 购买商品
 /// @param placementID 要购买的商品所在的展示位ID
 /// @param userInfo 用户自定义透传字段，userInfo与本次交易的生命周期相同。请注意：key必须为NSString，value必须是NSString或NSNumber
-+ (void)purchase:(NSString *)placementID userInfo:(nonnull NSDictionary <NSString *, id<NSCopying, NSSecureCoding>>*)userInfo;
++ (void)purchase:(NSString *)placementID withUid:(NSString *)uid userInfo:(nonnull NSDictionary <NSString *, id<NSCopying, NSSecureCoding>>*)userInfo;
+
+/// @param isChange 是否需要强制区分账户userId 默认NO
++ (void)isChangeUser:(BOOL)isChange;
 
 /// 获取extra key，购买成功的订单号
 + (NSString *)ek_order_number;
@@ -110,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)ek_user_info;
 
 /// 恢复购买
-/// @param complete 恢复购买回调：status=NPInAppPurchase模块NPIAPStatus枚举值；userInfo=订单用户信息数组；error=报错信息；
+/// @param complete 恢复购买回调：status=NPErrorCode枚举值；userInfo=订单用户信息数组；error=报错信息；
 + (void)restore:(void(^)(NSUInteger status, NSArray *userInfo, NSError *error))complete;
 
 /// 处理丢单(不建议开发者主动调用，SDK内部会自动处理丢单问题)

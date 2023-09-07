@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param uid 用户id 非强制登录初始化可为空 登录态不传递该值有可能会导致丢单问题
 + (instancetype)infoWithProjectID:(NSString *)projectID uid:(nullable NSString *)uid;
 
-
+/// @param uid 用户id 非强制登录初始化可为空 登录态不传递该值有可能会导致丢单问题
++ (instancetype)infoWithUid:(nullable NSString *)uid;
 
 #pragma mark - DEPRECATED
 
