@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isStarted;
 
 /// 是否去要强制更改用户
-@property (nonatomic, assign, readonly) BOOL isChange;
+@property (nonatomic, assign) BOOL isChange;
 
 /// 获取NoxPay单例对象
 + (instancetype)shared;
@@ -59,12 +59,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NoxPay (IAP)
 
 /// 启动IAP模块
+/// @param iapInfo IAP模块配置
 /// @param initComplete 启动IAP模块结果，isSuccess = 启动是否成功，error = 错误信息
 /// @param purchaseProcess 购买流程全景回调，status : NPErrorCode枚举值；error : 报错信息；extra:当status==10004时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
 + (void)startIAPInitComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
          purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
 
 /// 启动IAP模块并且同时初始化Firebase
+/// @param iapInfo IAP模块配置
 /// @param initComplete 启动IAP模块结果，isSuccess = 启动是否成功，error = 错误信息
 /// @param purchaseProcess 购买流程全景回调，status : NPErrorCode枚举值；error : 报错信息；extra:当status==10004时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
 + (void)startIAPAndFIRInitComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
