@@ -16,25 +16,24 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NoxPay-Beta"
-  spec.version      = "1.0.8"
+  spec.version      = "1.1.1"
   spec.summary      = "A aggregate payment SDK-Beta provided Nox."
   spec.homepage     = "https://github.com/NoxmobiSDK/NoxPayBeta"
   spec.license      = "MIT"
   spec.author       = { "gaochong" => "gaochong@noxgroup.com" }
   spec.platform     = :ios, "10.0"
   spec.source       = { :git => "https://github.com/NoxmobiSDK/NoxPayBeta.git", :tag => "#{spec.version}" }
+ spec.resource_bundles = {spec.name => 'NoxPaySDK.framework/PrivacyInfo.xcprivacy'}
   spec.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
   spec.requires_arc = true
 
   spec.subspec 'Pay' do |ss|
     ss.source_files = "NoxPaySDK.framework/Headers/*.{h}"
     ss.ios.vendored_frameworks = 'NoxPaySDK.framework'
-    ss.dependency 'AFNetworking'
+    # ss.dependency 'AFNetworking'
     ss.dependency 'GTMBase64'
     ss.dependency 'YYCache'
     ss.dependency 'MJExtension'
-    ss.dependency 'Firebase/Analytics'
-    ss.dependency 'Firebase/RemoteConfig'
   end
 
 end
