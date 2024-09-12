@@ -16,14 +16,13 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NoxPay-Beta"
-  spec.version      = "1.1.7"
+  spec.version      = "1.1.8"
   spec.summary      = "A aggregate payment SDK-Beta provided Nox."
   spec.homepage     = "https://github.com/NoxmobiSDK/NoxPayBeta"
   spec.license      = "MIT"
   spec.author       = { "gaochong" => "gaochong@noxgroup.com" }
   spec.platform     = :ios, "10.0"
   spec.source       = { :git => "https://github.com/NoxmobiSDK/NoxPayBeta.git", :tag => "#{spec.version}" }
- spec.resource_bundles = {spec.name => 'NoxPaySDK.framework/PrivacyInfo.xcprivacy'}
   spec.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
   spec.requires_arc = true
 
