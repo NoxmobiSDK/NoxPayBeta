@@ -30,7 +30,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'Pay' do |ss|
     ss.source_files = "NoxPaySDK.framework/Headers/*.{h}"
     ss.ios.vendored_frameworks = 'NoxPaySDK.framework'
-    ss.dependency 'NFNetworking','1.2.0'
+    ss.dependency "NFNetworking","1.2.0'
     ss.dependency 'GTMBase64'
     ss.dependency 'YYCache'
     ss.dependency 'MJExtension'
