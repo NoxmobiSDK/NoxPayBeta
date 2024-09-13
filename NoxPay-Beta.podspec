@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NoxPay-Beta"
-  spec.version      = "1.1.8"
+  spec.version      = "1.1.9"
   spec.summary      = "A aggregate payment SDK-Beta provided Nox."
   spec.homepage     = "https://github.com/NoxmobiSDK/NoxPayBeta"
   spec.license      = "MIT"
@@ -29,7 +29,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'Pay' do |ss|
     ss.source_files = "NoxPaySDK.framework/Headers/*.{h}"
     ss.ios.vendored_frameworks = 'NoxPaySDK.framework'
-    ss.dependency "NFNetworking", "1.2.0"
+    ss.dependency 'NFNetworking','1.2.0'
     ss.dependency 'GTMBase64'
     ss.dependency 'YYCache'
     ss.dependency 'MJExtension'
